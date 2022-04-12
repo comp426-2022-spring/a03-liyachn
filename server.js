@@ -63,28 +63,28 @@ function flipACoin(call) {
 
 
 
-app.get('/app', (req, res) => { // root endpoint
+app.get('/app/', (req, res) => { // root endpoint
     res.status(200).end('200 OK') // 200 = success
     res.type("text/plain")
 })
 
-app.get('/app/flip', (req, res) => { // returns results of random coin flip
+app.get('/app/flip/', (req, res) => { // returns results of random coin flip
     res.status(200).json({ 'flip' : coinFlip() }) // add 'flip' key => becomes json
     res.type("text/plain")
 })
 
-app.get('/app/flips/:number', (req, res) => { // returns json array of raw random flips + summary
+app.get('/app/flips/:number/', (req, res) => { // returns json array of raw random flips + summary
     raw = coinFlips(req.params.number)
     res.status(200).json({ 'raw' : raw, 'summary' : countFlips(raw)})
     res.type("text/plain")
 })
 
-app.get('/app/flip/call/heads', (req, res) => { // returns result of random flip match against heads
+app.get('/app/flip/call/heads/', (req, res) => { // returns result of random flip match against heads
     res.status(200).json(flipACoin('heads'))
     res.type("text/plain")
 })
 
-app.get('/app/flip/call/tails', (req, res) => { // returns result of random flip match against tails
+app.get('/app/flip/call/tails/', (req, res) => { // returns result of random flip match against tails
     res.status(200).json(flipACoin('tails'))
     res.type("text/plain")
 })
