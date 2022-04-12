@@ -4,7 +4,7 @@ const app = express()
 // Require minimist module (make sure you install this one via npm).
 // Use minimist to process one argument `--port=` on the command line after `node server.js`.
 import minimist from 'minimist'
-const args = require('minimist')(process.argv.slice(2)) // splits, takes last input
+const args = minimist(process.argv.slice(2)) // splits, takes last input
 // Define allowed argument name 'port'.
 args['port']
 // Define a const `port` using the argument from the command line. 
@@ -12,7 +12,7 @@ args['port']
 const port = args.port || process.env.PORT || 5000 // if defined => use args, if not defined => use env variable, else use 3000
 
 const server = app.listen(port, () => {
-    console.log('App running on port %PORT%').replace('%PORT%', port)
+    console.log('App running on port %PORT%'.replace('%PORT%', port))
 })
 
 
@@ -74,7 +74,7 @@ app.get('/app/flip/', (req, res) => { // returns results of random coin flip
 })
 
 app.get('/app/flips/:number/', (req, res) => { // returns json array of raw random flips + summary
-    raw = coinFlips(req.params.number)
+    const raw = coinFlips(req.params.number)
     res.status(200).json({ 'raw' : raw, 'summary' : countFlips(raw)})
     res.type("text/plain")
 })
